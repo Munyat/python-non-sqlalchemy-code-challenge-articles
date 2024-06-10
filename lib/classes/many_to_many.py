@@ -136,4 +136,7 @@ class Magazine:
     def top_publisher(cls):
         if not cls.all:
             return None
-        return max(cls.all, key=lambda magazine: len(magazine._articles))
+        magazines_with_articles = [magazine for magazine in cls.all if magazine._articles]
+        if not magazines_with_articles:
+            return None
+        return max(magazines_with_articles, key=lambda magazine: len(magazine._articles))
